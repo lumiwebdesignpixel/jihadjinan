@@ -1,0 +1,892 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff9f4">
+  <meta name="description" content="A little invitation to celebrate Jihan and Jihad, our precious twins.">
+  <title>Jihan &amp; Jihad — A Little Invitation</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --pink: #f8dce8;
+      --pink-deep: #d99bb6;
+      --blue: #dcebfa;
+      --ivory: #fff9f4;
+      --gold: #d6b56d;
+      --lavender: #e9e1f5;
+      --mauve: #73566d;
+      --blue-gray: #63758b;
+      --white: #fffefd;
+      --serif: "Palatino Linotype", "Book Antiqua", Georgia, serif;
+      --sans: "Segoe UI", "Trebuchet MS", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+    body {
+      margin: 0;
+      color: var(--mauve);
+      background: var(--ivory);
+      font-family: var(--sans);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    button, input, select, textarea { font: inherit; }
+    a { color: inherit; }
+    button:focus-visible, a:focus-visible, input:focus-visible,
+    select:focus-visible, textarea:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+    }
+    .skip-link {
+      position: fixed;
+      z-index: 20;
+      top: .7rem;
+      left: .7rem;
+      padding: .65rem 1rem;
+      border-radius: 2rem;
+      background: var(--white);
+      transform: translateY(-160%);
+    }
+    .skip-link:focus { transform: translateY(0); }
+    .site-header {
+      position: absolute;
+      z-index: 5;
+      top: 0;
+      right: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      max-width: 1280px;
+      margin: auto;
+      padding: 1.25rem clamp(1rem, 5vw, 4rem);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      color: var(--mauve);
+      font-family: var(--serif);
+      font-size: 1.08rem;
+      letter-spacing: .03em;
+      text-decoration: none;
+    }
+    .brand-mark { color: var(--gold); font-size: 1.35rem; }
+    .language-picker {
+      display: flex;
+      gap: .25rem;
+      padding: .3rem;
+      border: 1px solid rgb(214 181 109 / 40%);
+      border-radius: 2rem;
+      background: rgb(255 254 253 / 76%);
+      box-shadow: 0 4px 20px rgb(115 86 109 / 7%);
+      backdrop-filter: blur(10px);
+    }
+    .language-picker button {
+      min-width: 2.8rem;
+      min-height: 2.5rem;
+      padding: .35rem .7rem;
+      border: 0;
+      border-radius: 2rem;
+      color: var(--blue-gray);
+      background: transparent;
+      cursor: pointer;
+      font-size: .79rem;
+      font-weight: 700;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+    .language-picker button:hover { transform: translateY(-1px); }
+    .language-picker button[aria-pressed="true"] {
+      color: var(--white);
+      background: var(--mauve);
+    }
+    .hero {
+      position: relative;
+      display: grid;
+      min-height: min(850px, 100svh);
+      place-items: center;
+      isolation: isolate;
+      overflow: hidden;
+      padding: 7rem 1.2rem 3.5rem;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 18% 72%, rgb(248 220 232 / 88%), transparent 36%),
+        radial-gradient(ellipse at 83% 30%, rgb(220 235 250 / 94%), transparent 40%),
+        linear-gradient(155deg, #fff8f8 3%, #fff9f4 45%, #edf4fc 100%);
+    }
+    .hero::before, .hero::after {
+      position: absolute;
+      z-index: -1;
+      width: 28rem;
+      height: 14rem;
+      border-radius: 50%;
+      background: rgb(255 255 255 / 54%);
+      content: "";
+      filter: blur(34px);
+    }
+    .hero::before { top: 8%; left: -12rem; }
+    .hero::after { right: -14rem; bottom: 8%; }
+    .hero-inner { width: min(100%, 750px); }
+    .eyebrow {
+      margin: 0 0 .45rem;
+      color: #a48964;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .23em;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      margin: 0;
+      color: var(--mauve);
+      font-family: var(--serif);
+      font-size: clamp(2.7rem, 8vw, 5.6rem);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -.045em;
+    }
+    .hero h1 .ampersand { color: var(--gold); font-style: italic; }
+    .hero-tagline {
+      margin: .8rem 0 0;
+      color: var(--blue-gray);
+      font-family: var(--serif);
+      font-size: clamp(1rem, 2.8vw, 1.3rem);
+      font-style: italic;
+    }
+    .hero-art-wrap {
+      position: relative;
+      isolation: isolate;
+      width: min(100%, 690px);
+      margin: .2rem auto -.6rem;
+    }
+    .hero-art-wrap::before {
+      position: absolute;
+      z-index: -1;
+      inset: 4% 2%;
+      border-radius: 50%;
+      background:
+        radial-gradient(ellipse at 30% 45%, rgb(248 220 232 / 90%), transparent 65%),
+        radial-gradient(ellipse at 72% 44%, rgb(220 235 250 / 92%), transparent 67%),
+        radial-gradient(ellipse at 50% 75%, rgb(255 249 244 / 95%), transparent 75%);
+      content: "";
+      filter: blur(38px);
+    }
+    .hero-art {
+      display: block;
+      width: 100%;
+      height: auto;
+      -webkit-mask-image:
+        linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%);
+      -webkit-mask-composite: source-in;
+      mask-image:
+        linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%);
+      mask-composite: intersect;
+      filter: drop-shadow(0 16px 27px rgb(115 86 109 / 9%)) saturate(.94);
+    }
+    .hero-invite {
+      max-width: 540px;
+      margin: 0 auto 1.3rem;
+      color: var(--blue-gray);
+      font-family: var(--serif);
+      font-size: 1.08rem;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      min-height: 3.1rem;
+      padding: .75rem 1.5rem;
+      border: 1px solid transparent;
+      border-radius: 2rem;
+      color: var(--white);
+      background: var(--mauve);
+      box-shadow: 0 8px 20px rgb(115 86 109 / 18%);
+      cursor: pointer;
+      font-size: .9rem;
+      font-weight: 650;
+      text-decoration: none;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .button:hover {
+      transform: translateY(-2px);
+      background: #65495f;
+      box-shadow: 0 11px 24px rgb(115 86 109 / 23%);
+    }
+    .button:disabled { cursor: wait; opacity: .7; transform: none; }
+    .button-outline {
+      border-color: rgb(214 181 109 / 65%);
+      color: var(--mauve);
+      background: var(--white);
+      box-shadow: none;
+    }
+    .button-outline:hover { color: var(--mauve); background: #fff6f5; }
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: clamp(.55rem, 2vw, 1.1rem);
+      margin: 1.6rem auto 1.8rem;
+    }
+    .count-unit {
+      min-width: clamp(4.1rem, 15vw, 5.5rem);
+      padding: .65rem .55rem .5rem;
+      border: 1px solid rgb(214 181 109 / 43%);
+      border-radius: 1rem;
+      background: rgb(255 254 253 / 68%);
+      box-shadow: 0 5px 16px rgb(115 86 109 / 5%);
+    }
+    .count-number {
+      display: block;
+      color: var(--mauve);
+      font-family: var(--serif);
+      font-size: clamp(1.45rem, 5vw, 2rem);
+      font-variant-numeric: tabular-nums;
+      line-height: 1.1;
+    }
+    .count-label {
+      display: block;
+      margin-top: .25rem;
+      color: var(--blue-gray);
+      font-size: .66rem;
+      letter-spacing: .04em;
+    }
+    .countdown[data-finished="true"] {
+      color: var(--mauve);
+      font-family: var(--serif);
+      font-size: 1.1rem;
+    }
+    .sky-star {
+      position: absolute;
+      z-index: -1;
+      color: var(--gold);
+      opacity: .72;
+      animation: twinkle 3s ease-in-out infinite;
+    }
+    .sky-star:nth-of-type(2n) { animation-delay: 1.4s; }
+    .balloon {
+      position: absolute;
+      z-index: -1;
+      width: 42px;
+      height: 55px;
+      border-radius: 52% 48% 48% 52%;
+      opacity: .66;
+      box-shadow: inset -7px -5px 12px rgb(115 86 109 / 8%), inset 8px 7px 12px rgb(255 255 255 / 60%);
+      animation: float 6s ease-in-out infinite;
+    }
+    .balloon::before {
+      position: absolute;
+      bottom: -5px;
+      left: 48%;
+      width: 0;
+      height: 0;
+      border-top: 7px solid currentColor;
+      border-right: 5px solid transparent;
+      border-left: 5px solid transparent;
+      content: "";
+    }
+    .balloon::after {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      width: 1px;
+      height: 68px;
+      background: rgb(115 86 109 / 27%);
+      content: "";
+      transform-origin: top;
+      animation: ribbon 3.5s ease-in-out infinite;
+    }
+    .balloon-pink { color: var(--pink); background: var(--pink); }
+    .balloon-blue { color: var(--blue); background: var(--blue); }
+    .section {
+      position: relative;
+      padding: clamp(4rem, 9vw, 7rem) 1.2rem;
+    }
+    .section-inner { width: min(100%, 1040px); margin: auto; }
+    .section-soft {
+      background:
+        radial-gradient(ellipse at 0% 50%, rgb(248 220 232 / 47%), transparent 34%),
+        radial-gradient(ellipse at 100% 20%, rgb(220 235 250 / 58%), transparent 34%),
+        #fffdfb;
+    }
+    .section-heading {
+      margin: 0;
+      color: var(--mauve);
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 400;
+      line-height: 1.18;
+      text-align: center;
+    }
+    .section-kicker {
+      margin: 0 0 .65rem;
+      color: #a48964;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .ornament {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .7rem;
+      margin: 1rem 0 2rem;
+      color: var(--gold);
+      font-size: .9rem;
+    }
+    .ornament::before, .ornament::after {
+      width: 2.6rem;
+      height: 1px;
+      background: rgb(214 181 109 / 60%);
+      content: "";
+    }
+    .invitation-card {
+      position: relative;
+      max-width: 760px;
+      margin: auto;
+      padding: clamp(2rem, 6vw, 4rem);
+      border: 1px solid rgb(214 181 109 / 52%);
+      border-radius: 1.6rem;
+      background: rgb(255 254 253 / 86%);
+      box-shadow: 0 18px 55px rgb(115 86 109 / 8%);
+      text-align: center;
+    }
+    .invitation-card::before {
+      position: absolute;
+      inset: .55rem;
+      border: 1px solid rgb(214 181 109 / 22%);
+      border-radius: 1.2rem;
+      content: "";
+      pointer-events: none;
+    }
+    .invitation-card p {
+      position: relative;
+      margin: 0;
+      color: var(--blue-gray);
+      font-family: var(--serif);
+      font-size: clamp(1.03rem, 2.3vw, 1.2rem);
+      line-height: 1.95;
+    }
+    .event-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      max-width: 820px;
+      margin: auto;
+    }
+    .detail-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      min-width: 0;
+      padding: 1.35rem;
+      border: 1px solid rgb(214 181 109 / 34%);
+      border-radius: 1.2rem;
+      background: rgb(255 254 253 / 85%);
+      box-shadow: 0 8px 24px rgb(115 86 109 / 5%);
+    }
+    .detail-icon {
+      display: grid;
+      flex: 0 0 2.8rem;
+      width: 2.8rem;
+      height: 2.8rem;
+      place-items: center;
+      border-radius: 50%;
+      color: #987c4c;
+      background: #fbf1dc;
+      font-size: 1.25rem;
+    }
+    .detail-card:nth-child(2) .detail-icon { background: #f9eaf0; }
+    .detail-card:nth-child(3) .detail-icon { background: #eaf2fb; }
+    .detail-card:nth-child(4) .detail-icon { background: #f1eafb; }
+    .detail-card h3 {
+      margin: .05rem 0 .2rem;
+      color: var(--mauve);
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .detail-card p { margin: 0; color: var(--blue-gray); font-size: .92rem; }
+    .dress-cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .55rem;
+      margin-top: .75rem;
+    }
+    .dress-chip {
+      padding: .6rem .5rem;
+      border-radius: .8rem;
+      text-align: center;
+    }
+    .dress-chip strong { display: block; font-size: .8rem; }
+    .dress-chip span { display: block; margin-top: .1rem; font-size: .74rem; }
+    .dress-pink { background: #fff0f5; color: #8e6176; }
+    .dress-blue { background: #edf5fd; color: #526b87; }
+    .rsvp-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+      align-items: center;
+      gap: clamp(2rem, 7vw, 5rem);
+    }
+    .rsvp-copy .section-heading, .rsvp-copy .section-kicker { text-align: start; }
+    .rsvp-copy > p:last-child { color: var(--blue-gray); }
+    .rsvp-card {
+      padding: clamp(1.4rem, 4vw, 2.2rem);
+      border: 1px solid rgb(214 181 109 / 45%);
+      border-radius: 1.4rem;
+      background: rgb(255 254 253 / 92%);
+      box-shadow: 0 18px 45px rgb(115 86 109 / 9%);
+    }
+    .form-field { margin-bottom: 1rem; }
+    .form-field label {
+      display: block;
+      margin-bottom: .35rem;
+      color: var(--mauve);
+      font-size: .87rem;
+      font-weight: 650;
+    }
+    .form-field input, .form-field select, .form-field textarea {
+      display: block;
+      width: 100%;
+      min-height: 2.9rem;
+      padding: .7rem .85rem;
+      border: 1px solid #e6dce1;
+      border-radius: .7rem;
+      color: var(--mauve);
+      background: #fffdfc;
+    }
+    .form-field textarea { min-height: 6rem; resize: vertical; }
+    .form-field input::placeholder, .form-field textarea::placeholder { color: #8a8993; }
+    .form-field [aria-invalid="true"] { border-color: #b94a58; }
+    .field-error { min-height: 1.15rem; margin: .2rem 0 0; color: #a33b49; font-size: .78rem; }
+    .rsvp-card .button { width: 100%; }
+    .form-status {
+      min-height: 1.4rem;
+      margin: .8rem 0 0;
+      color: var(--mauve);
+      font-size: .87rem;
+      text-align: center;
+    }
+    .demo-note {
+      margin: 1rem 0 0;
+      padding: .75rem .85rem;
+      border-radius: .75rem;
+      color: #65566e;
+      background: #f2eef7;
+      font-size: .77rem;
+      line-height: 1.55;
+    }
+    footer {
+      padding: 2rem 1.2rem;
+      border-top: 1px solid rgb(214 181 109 / 28%);
+      background: #fffdfb;
+      text-align: center;
+    }
+    .footer-love {
+      margin: 0;
+      color: var(--mauve);
+      font-family: var(--serif);
+      font-size: 1rem;
+    }
+    .footer-credit { margin: .25rem 0 0; color: var(--blue-gray); font-size: .75rem; }
+    [dir="rtl"] { text-align: right; }
+    [dir="rtl"] .site-header { flex-direction: row-reverse; }
+    [dir="rtl"] .rsvp-wrap { direction: rtl; }
+    [dir="rtl"] .skip-link { right: .7rem; left: auto; }
+    [dir="rtl"] .form-field input, [dir="rtl"] .form-field textarea { text-align: right; }
+    [dir="rtl"] .form-field select { text-align: right; }
+    [dir="rtl"] .event-grid, [dir="rtl"] .dress-cards, [dir="rtl"] .countdown { direction: rtl; }
+    .fade-in { animation: rise-in .8s both; }
+    @keyframes float { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-13px) rotate(3deg); } }
+    @keyframes ribbon { 0%, 100% { transform: rotate(4deg); } 50% { transform: rotate(-5deg); } }
+    @keyframes twinkle { 0%, 100% { opacity: .35; transform: scale(.8); } 50% { opacity: .9; transform: scale(1.16); } }
+    @keyframes rise-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 720px) {
+      .hero { min-height: 100svh; padding-top: 6.4rem; }
+      .hero-art-wrap { width: min(100%, 590px); margin-block: 0 -.3rem; }
+      .event-grid { grid-template-columns: 1fr; max-width: 490px; }
+      .rsvp-wrap { grid-template-columns: 1fr; gap: 1.5rem; }
+      .rsvp-copy .section-heading, .rsvp-copy .section-kicker { text-align: center; }
+      .rsvp-copy > p:last-child { max-width: 540px; margin-inline: auto; text-align: center; }
+      .balloon { transform: scale(.75); }
+    }
+    @media (max-width: 420px) {
+      .site-header { padding: .85rem .75rem; }
+      .brand { gap: .3rem; font-size: .9rem; }
+      .language-picker { gap: 0; padding: .2rem; }
+      .language-picker button { min-width: 2.35rem; min-height: 2.25rem; padding-inline: .5rem; font-size: .72rem; }
+      .hero { padding-inline: .8rem; }
+      .hero h1 { font-size: clamp(2.55rem, 13vw, 3.3rem); }
+      .countdown { gap: .4rem; }
+      .count-unit { min-width: 3.8rem; padding-inline: .35rem; }
+      .count-label { font-size: .59rem; }
+      .section { padding-inline: .9rem; }
+      .detail-card { gap: .75rem; padding: 1rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Jihan and Jihad invitation">
+      <span class="brand-mark" aria-hidden="true">✦</span>
+      <span data-i18n="brand">A little invitation</span>
+    </a>
+    <nav class="language-picker" aria-label="Choose language" data-i18n-aria="languageLabel">
+      <button type="button" lang="en" data-language="en" aria-pressed="true">EN</button>
+      <button type="button" lang="fr" data-language="fr" aria-pressed="false">FR</button>
+      <button type="button" lang="ar" data-language="ar" aria-pressed="false">AR</button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <span class="sky-star" aria-hidden="true" style="top:18%;left:17%">✦</span>
+      <span class="sky-star" aria-hidden="true" style="top:29%;right:15%;font-size:1.2rem">✧</span>
+      <span class="sky-star" aria-hidden="true" style="bottom:24%;left:10%;font-size:.8rem">✧</span>
+      <span class="sky-star" aria-hidden="true" style="bottom:33%;right:11%">✦</span>
+      <div class="hero-inner fade-in">
+        <p class="eyebrow" data-i18n="heroEyebrow">A celebration for two little loves</p>
+        <h1 id="hero-title"><span data-event-name="girl" dir="auto">Jihan</span> <span class="ampersand">&amp;</span> <span data-event-name="boy" dir="auto">Jihad</span></h1>
+        <p class="hero-tagline" data-i18n="tagline">Double the love, double the joy</p>
+
+        <div class="hero-art-wrap">
+          <img class="hero-art" src="./twins-moon.png" alt="Two storybook twins sitting together on a glowing golden crescent moon, surrounded by pastel balloons, clouds and stars." data-i18n-alt="artAlt" width="840" height="768" fetchpriority="high" decoding="async">
+        </div>
+
+        <p class="hero-invite" data-i18n="heroInvite">With hearts full of love, we invite you to celebrate the upcoming arrival of our precious twins.</p>
+        <div class="countdown" id="countdown" role="timer" aria-label="Countdown to November 10, 2026" data-i18n-aria="countdownAria">
+          <div class="count-unit"><span class="count-number" data-count="days">—</span><span class="count-label" data-i18n="days">Days</span></div>
+          <div class="count-unit"><span class="count-number" data-count="hours">—</span><span class="count-label" data-i18n="hours">Hours</span></div>
+          <div class="count-unit"><span class="count-number" data-count="minutes">—</span><span class="count-label" data-i18n="minutes">Minutes</span></div>
+          <div class="count-unit"><span class="count-number" data-count="seconds">—</span><span class="count-label" data-i18n="seconds">Seconds</span></div>
+        </div>
+        <a class="button" href="#invitation"><span data-i18n="discover">Discover the invitation</span><span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <section class="section" id="invitation" aria-labelledby="invitation-title">
+      <div class="section-inner">
+        <p class="section-kicker" data-i18n="welcome">A note from the family</p>
+        <h2 class="section-heading" id="invitation-title" data-i18n="invitationTitle">You are warmly invited</h2>
+        <div class="ornament" aria-hidden="true">✦</div>
+        <article class="invitation-card">
+          <p data-i18n="invitationMessage">Two little miracles, one beautiful celebration.<br>With hearts full of love, we invite you to celebrate the upcoming arrival of our precious twins, Jihan and Jihad.<br>Join us for a magical day filled with love, laughter, and sweet memories.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="details" aria-labelledby="details-title">
+      <div class="section-inner">
+        <p class="section-kicker" data-i18n="detailsKicker">The little details</p>
+        <h2 class="section-heading" id="details-title" data-i18n="detailsTitle">A day to remember</h2>
+        <div class="ornament" aria-hidden="true">✧</div>
+        <div class="event-grid">
+          <article class="detail-card">
+            <span class="detail-icon" aria-hidden="true">♡</span>
+            <div><h3 data-i18n="eventLabel">Celebration</h3><p data-i18n="eventName">Baby Shower for Jihan &amp; Jihad</p></div>
+          </article>
+          <article class="detail-card">
+            <span class="detail-icon" aria-hidden="true">✧</span>
+            <div><h3 data-i18n="dateLabel">Date</h3><p id="event-date">November 10, 2026</p></div>
+          </article>
+          <article class="detail-card">
+            <span class="detail-icon" aria-hidden="true">◷</span>
+            <div><h3 data-i18n="timeLabel">Time</h3><p data-i18n="timePending">To be announced</p></div>
+          </article>
+          <article class="detail-card">
+            <span class="detail-icon" aria-hidden="true">⌖</span>
+            <div><h3 data-i18n="venueLabel">Venue</h3><p data-i18n="venuePending">To be announced</p></div>
+          </article>
+          <article class="detail-card" style="grid-column:1/-1">
+            <span class="detail-icon" aria-hidden="true">♡</span>
+            <div style="width:100%">
+              <h3 data-i18n="dressLabel">Dress code</h3>
+              <div class="dress-cards">
+                <div class="dress-chip dress-pink"><strong data-i18n="ladies">Ladies</strong><span data-i18n="pinkAttire">Blush pink</span></div>
+                <div class="dress-chip dress-blue"><strong data-i18n="gentlemen">Gentlemen</strong><span data-i18n="blueAttire">Baby blue</span></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="rsvp" aria-labelledby="rsvp-title">
+      <div class="section-inner rsvp-wrap">
+        <div class="rsvp-copy">
+          <p class="section-kicker" data-i18n="rsvpKicker">Save a little space in your heart</p>
+          <h2 class="section-heading" id="rsvp-title" data-i18n="rsvpTitle">Will you join us?</h2>
+          <div class="ornament" aria-hidden="true">✦</div>
+          <p data-i18n="rsvpIntro">Your presence would make this celebration even more special. Let us know if you can make it.</p>
+        </div>
+        <form class="rsvp-card" id="rsvp-form" novalidate>
+          <div class="form-field">
+            <label for="guest-name" data-i18n="nameLabel">Your full name</label>
+            <input id="guest-name" name="name" type="text" autocomplete="name" required aria-describedby="name-error" data-i18n-placeholder="namePlaceholder">
+            <p class="field-error" id="name-error" aria-live="polite"></p>
+          </div>
+          <div class="form-field">
+            <label for="guest-count" data-i18n="attendeesLabel">Number of attendees</label>
+            <select id="guest-count" name="attendees">
+              <option value="1" selected>1</option><option value="2">2</option><option value="3">3</option>
+              <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+              <option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="attendance" data-i18n="attendanceLabel">Your response</label>
+            <select id="attendance" name="attendance" required aria-describedby="attendance-error">
+              <option value="" selected data-i18n="chooseResponse">Please choose a response</option>
+              <option value="accept" data-i18n="accept">Joyfully accepts</option>
+              <option value="decline" data-i18n="decline">Regretfully declines</option>
+            </select>
+            <p class="field-error" id="attendance-error" aria-live="polite"></p>
+          </div>
+          <div class="form-field">
+            <label for="guest-message" data-i18n="messageLabel">A little message (optional)</label>
+            <textarea id="guest-message" name="message" rows="3" data-i18n-placeholder="messagePlaceholder"></textarea>
+          </div>
+          <button class="button" id="submit-rsvp" type="submit" data-i18n="submit">Send my response</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          <p class="demo-note" data-i18n="demoNote">Demo only: your response is not sent or saved. RSVP collection will be available once a private service is connected.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p class="footer-love" data-i18n="footerLove">Made with love for Jihan &amp; Jihad ✦</p>
+    <p class="footer-credit" data-i18n="footerCredit">Digital invitation by LumiWeb</p>
+  </footer>
+
+  <script>
+    const EVENT = {
+      girl: { name: "Jihan", arabicName: "جهان" },
+      boy: { name: "Jihad", arabicName: "جهاد" },
+      date: { year: 2026, month: 10, day: 10 },
+      targetHour: 0,
+      targetMinute: 0,
+      time: null,
+      venue: null,
+      parents: []
+    };
+
+    const translations = {
+      en: {
+        skip: "Skip to content", brand: "A little invitation", languageLabel: "Choose language",
+        heroEyebrow: "A celebration for two little loves", tagline: "Double the love, double the joy",
+        artAlt: "Two storybook twins sitting together on a glowing golden crescent moon, surrounded by pastel balloons, clouds and stars.",
+        heroInvite: "With hearts full of love, we invite you to celebrate the upcoming arrival of our precious twins.",
+        countdownAria: "Countdown to November 10, 2026", days: "Days", hours: "Hours", minutes: "Minutes", seconds: "Seconds",
+        finished: "The celebration day is here — let the memories begin!", discover: "Discover the invitation",
+        welcome: "A note from the family", invitationTitle: "You are warmly invited",
+        invitationMessage: "Two little miracles, one beautiful celebration.<br>With hearts full of love, we invite you to celebrate the upcoming arrival of our precious twins, {girl} and {boy}.<br>Join us for a magical day filled with love, laughter, and sweet memories.",
+        detailsKicker: "The little details", detailsTitle: "A day to remember", eventLabel: "Celebration",
+        eventName: "Baby Shower for {girl} & {boy}", dateLabel: "Date", timeLabel: "Time",
+        timePending: "To be announced", venueLabel: "Venue", venuePending: "To be announced",
+        dressLabel: "Dress code", ladies: "Ladies", pinkAttire: "Blush pink", gentlemen: "Gentlemen", blueAttire: "Baby blue",
+        rsvpKicker: "Save a little space in your heart", rsvpTitle: "Will you join us?",
+        rsvpIntro: "Your presence would make this celebration even more special. Let us know if you can make it.",
+        nameLabel: "Your full name", namePlaceholder: "e.g. Alex Morgan", attendeesLabel: "Number of attendees",
+        attendanceLabel: "Your response", chooseResponse: "Please choose a response",
+        accept: "Joyfully accepts", decline: "Regretfully declines", messageLabel: "A little message (optional)",
+        messagePlaceholder: "Leave a note for the family…", submit: "Send my response", submitting: "Preparing demo response…",
+        nameError: "Please enter your name.", attendanceError: "Please choose whether you can attend.",
+        success: "Thank you! Your demo response has been prepared, but not sent or saved.",
+        demoNote: "Demo only: your response is not sent or saved. RSVP collection will be available once a private service is connected.",
+        footerLove: "Made with love for {girl} & {boy} ✦", footerCredit: "Digital invitation by LumiWeb"
+      },
+      fr: {
+        skip: "Passer au contenu", brand: "Une jolie invitation", languageLabel: "Choisir la langue",
+        heroEyebrow: "Une fête pour deux petits amours", tagline: "Deux fois plus d’amour, deux fois plus de joie",
+        artAlt: "Deux jumeaux illustrés assis ensemble sur un croissant de lune doré lumineux, entourés de ballons pastel, de nuages et d’étoiles.",
+        heroInvite: "Le cœur rempli d’amour, nous vous invitons à célébrer la prochaine arrivée de nos précieux jumeaux.",
+        countdownAria: "Compte à rebours jusqu’au 10 novembre 2026", days: "Jours", hours: "Heures", minutes: "Minutes", seconds: "Secondes",
+        finished: "Le grand jour est arrivé — place aux beaux souvenirs !", discover: "Découvrir l’invitation",
+        welcome: "Un mot de la famille", invitationTitle: "Vous êtes chaleureusement invités",
+        invitationMessage: "Deux petits miracles, une magnifique célébration.<br>Le cœur rempli d’amour, nous vous invitons à célébrer l’arrivée prochaine de nos précieux jumeaux, {girl} et {boy}.<br>Rejoignez-nous pour une journée magique remplie d’amour, de joie et de doux souvenirs.",
+        detailsKicker: "Les petits détails", detailsTitle: "Une journée inoubliable", eventLabel: "Célébration",
+        eventName: "Baby shower de {girl} et {boy}", dateLabel: "Date", timeLabel: "Heure",
+        timePending: "À confirmer", venueLabel: "Lieu", venuePending: "À confirmer",
+        dressLabel: "Code vestimentaire", ladies: "Mesdames", pinkAttire: "Rose poudré", gentlemen: "Messieurs", blueAttire: "Bleu pastel",
+        rsvpKicker: "Gardez une petite place dans votre cœur", rsvpTitle: "Serez-vous des nôtres ?",
+        rsvpIntro: "Votre présence rendrait cette fête encore plus spéciale. Faites-nous savoir si vous pourrez venir.",
+        nameLabel: "Votre nom complet", namePlaceholder: "p. ex. Alex Morgan", attendeesLabel: "Nombre de personnes",
+        attendanceLabel: "Votre réponse", chooseResponse: "Veuillez choisir une réponse",
+        accept: "Accepte avec joie", decline: "Ne pourra malheureusement pas venir", messageLabel: "Un petit mot (facultatif)",
+        messagePlaceholder: "Laissez un mot à la famille…", submit: "Envoyer ma réponse", submitting: "Préparation de la réponse démo…",
+        nameError: "Veuillez saisir votre nom.", attendanceError: "Veuillez indiquer si vous pourrez venir.",
+        success: "Merci ! Votre réponse démo est prête, mais elle n’a pas été envoyée ni enregistrée.",
+        demoNote: "Démo uniquement : votre réponse n’est ni envoyée ni enregistrée. La collecte des réponses sera disponible lorsqu’un service privé sera connecté.",
+        footerLove: "Créé avec amour pour {girl} et {boy} ✦", footerCredit: "Invitation numérique par LumiWeb"
+      },
+      ar: {
+        skip: "انتقل إلى المحتوى", brand: "دعوة صغيرة", languageLabel: "اختر اللغة",
+        heroEyebrow: "احتفالٌ لفرحتين صغيرتين", tagline: "حب مضاعف وفرح أكبر",
+        artAlt: "توأمان مرسومان يجلسان معًا على هلال ذهبي مضيء، تحيط بهما بالونات وشرائط وغيوم ونجوم بألوان باستيلية.",
+        heroInvite: "بقلوب مليئة بالحب، ندعوكم للاحتفال بقرب قدوم توأمنا الغاليين.",
+        countdownAria: "العد التنازلي حتى ١٠ نوفمبر ٢٠٢٦", days: "أيام", hours: "ساعات", minutes: "دقائق", seconds: "ثوانٍ",
+        finished: "ها قد أتى يوم الاحتفال — لنصنع أجمل الذكريات!", discover: "اكتشفوا الدعوة",
+        welcome: "كلمة من العائلة", invitationTitle: "يسعدنا حضوركم",
+        invitationMessage: "مع فرحة مضاعفة وحب لا حدود له، ندعوكم لمشاركتنا الاحتفال باقتراب قدوم توأمنا الغاليين، {girl} و{boy}.<br>ننتظركم لقضاء يوم مليء بالحب والفرح والذكريات الجميلة.",
+        detailsKicker: "تفاصيل صغيرة", detailsTitle: "يوم لا يُنسى", eventLabel: "الاحتفال",
+        eventName: "حفلة استقبال {girl} و{boy}", dateLabel: "التاريخ", timeLabel: "الوقت",
+        timePending: "سيُعلن عنه لاحقًا", venueLabel: "المكان", venuePending: "سيُعلن عنه لاحقًا",
+        dressLabel: "اللباس المقترح", ladies: "للسيدات", pinkAttire: "وردي فاتح", gentlemen: "للرجال", blueAttire: "أزرق سماوي",
+        rsvpKicker: "اتركوا مكانًا صغيرًا في قلوبكم", rsvpTitle: "هل تنضمون إلينا؟",
+        rsvpIntro: "سيجعل حضوركم احتفالنا أجمل. أخبرونا إن كنتم ستتمكنون من الحضور.",
+        nameLabel: "الاسم الكامل", namePlaceholder: "أدخل اسمك الكامل", attendeesLabel: "عدد الحاضرين",
+        attendanceLabel: "ردكم على الدعوة", chooseResponse: "يرجى اختيار الرد",
+        accept: "أؤكد حضوري بكل سرور", decline: "أعتذر عن عدم الحضور", messageLabel: "رسالة صغيرة (اختياري)",
+        messagePlaceholder: "اتركوا كلمة للعائلة…", submit: "إرسال الرد", submitting: "جارٍ إعداد الرد التجريبي…",
+        nameError: "يرجى إدخال الاسم.", attendanceError: "يرجى اختيار ما إذا كنتم ستحضرون.",
+        success: "شكرًا لكم! تم إعداد الرد التجريبي، لكنه لم يُرسل أو يُحفظ.",
+        demoNote: "نسخة تجريبية فقط: لن يُرسل ردكم أو يُحفظ. ستتوفر خدمة تأكيد الحضور عند ربط خدمة خاصة.",
+        footerLove: "صُنعت بكل حب لـ{girl} و{boy} ✦", footerCredit: "دعوة رقمية من LumiWeb"
+      }
+    };
+
+    let currentLanguage = "en";
+    let countdownInterval;
+
+    function setLanguage(language) {
+      if (!translations[language]) return;
+      currentLanguage = language;
+      const rtl = language === "ar";
+      document.documentElement.lang = language;
+      document.documentElement.dir = rtl ? "rtl" : "ltr";
+      document.documentElement.dataset.language = language;
+      const names = {
+        girl: rtl ? EVENT.girl.arabicName : EVENT.girl.name,
+        boy: rtl ? EVENT.boy.arabicName : EVENT.boy.name
+      };
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.dataset.i18n;
+        if (translations[language][key] !== undefined) {
+          element.innerHTML = translations[language][key]
+            .replace(/\{girl\}/g, names.girl)
+            .replace(/\{boy\}/g, names.boy);
+        }
+      });
+      document.querySelectorAll("[data-event-name]").forEach((element) => {
+        element.textContent = names[element.dataset.eventName];
+      });
+      document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
+        const key = element.dataset.i18nPlaceholder;
+        element.setAttribute("placeholder", translations[language][key]);
+      });
+      document.querySelectorAll("[data-i18n-alt]").forEach((element) => {
+        const key = element.dataset.i18nAlt;
+        element.setAttribute("alt", translations[language][key]);
+      });
+      document.querySelectorAll("[data-i18n-aria]").forEach((element) => {
+        const key = element.dataset.i18nAria;
+        element.setAttribute("aria-label", translations[language][key]);
+      });
+      document.querySelectorAll("[data-language]").forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.language === language));
+      });
+      document.getElementById("event-date").textContent = new Intl.DateTimeFormat(
+        language === "ar" ? "ar" : language,
+        { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" }
+      ).format(new Date(Date.UTC(EVENT.date.year, EVENT.date.month, EVENT.date.day)));
+      document.querySelector('[data-i18n="timePending"]').textContent = EVENT.time || translations[language].timePending;
+      document.querySelector('[data-i18n="venuePending"]').textContent = EVENT.venue || translations[language].venuePending;
+      document.title = `${names.girl} & ${names.boy} — ${language === "fr" ? "Une jolie invitation" : language === "ar" ? "دعوة صغيرة" : "A Little Invitation"}`;
+      document.getElementById("form-status").textContent = "";
+      document.getElementById("name-error").textContent = "";
+      document.getElementById("attendance-error").textContent = "";
+      document.getElementById("guest-name").removeAttribute("aria-invalid");
+      document.getElementById("attendance").removeAttribute("aria-invalid");
+      sessionStorage.setItem("invitation-language", language);
+      updateCountdown();
+    }
+
+    function updateCountdown() {
+      const target = new Date(EVENT.date.year, EVENT.date.month, EVENT.date.day, EVENT.targetHour, EVENT.targetMinute, 0);
+      const remaining = target.getTime() - Date.now();
+      const container = document.getElementById("countdown");
+      if (remaining <= 0) {
+        container.dataset.finished = "true";
+        container.replaceChildren();
+        container.textContent = translations[currentLanguage].finished;
+        window.clearInterval(countdownInterval);
+        return;
+      }
+      const values = {
+        days: Math.floor(remaining / 86400000),
+        hours: Math.floor((remaining % 86400000) / 3600000),
+        minutes: Math.floor((remaining % 3600000) / 60000),
+        seconds: Math.floor((remaining % 60000) / 1000)
+      };
+      Object.entries(values).forEach(([unit, value]) => {
+        const element = container.querySelector(`[data-count="${unit}"]`);
+        if (element) element.textContent = String(value).padStart(2, "0");
+      });
+    }
+
+    document.querySelectorAll("[data-language]").forEach((button) => {
+      button.addEventListener("click", () => setLanguage(button.dataset.language));
+    });
+
+    document.getElementById("rsvp-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const name = document.getElementById("guest-name");
+      const attendance = document.getElementById("attendance");
+      const nameError = document.getElementById("name-error");
+      const attendanceError = document.getElementById("attendance-error");
+      const status = document.getElementById("form-status");
+      nameError.textContent = "";
+      attendanceError.textContent = "";
+      status.textContent = "";
+      name.removeAttribute("aria-invalid");
+      attendance.removeAttribute("aria-invalid");
+
+      let firstInvalid;
+      if (!name.value.trim()) {
+        nameError.textContent = translations[currentLanguage].nameError;
+        name.setAttribute("aria-invalid", "true");
+        firstInvalid = name;
+      }
+      if (!attendance.value) {
+        attendanceError.textContent = translations[currentLanguage].attendanceError;
+        attendance.setAttribute("aria-invalid", "true");
+        firstInvalid ||= attendance;
+      }
+      if (firstInvalid) {
+        firstInvalid.focus();
+        return;
+      }
+
+      const submit = document.getElementById("submit-rsvp");
+      submit.disabled = true;
+      submit.textContent = translations[currentLanguage].submitting;
+      window.setTimeout(() => {
+        status.textContent = translations[currentLanguage].success;
+        submit.disabled = false;
+        submit.textContent = translations[currentLanguage].submit;
+      }, 450);
+    });
+
+    const savedLanguage = sessionStorage.getItem("invitation-language");
+    const initialLanguage = savedLanguage && translations[savedLanguage] ? savedLanguage : "en";
+    setLanguage(initialLanguage);
+    countdownInterval = window.setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
